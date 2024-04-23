@@ -1,3 +1,4 @@
+import { GameQuery } from './../App';
 import useData from "./useData";
 import { Genre } from "./useGenres";
 
@@ -15,18 +16,18 @@ export interface Game {
   metacritic: number;
 }
 
-const useGames = (selectedGenre: Genre | null, selectedPlatform: Platform | null) => 
+const useGames = (gameQuery: GameQuery) => 
   useData<Game>(
     '/games', 
     //6. game hook passes the selected genre as a query string parameter to the data hook
     //7. we had to open up our data hook and make it more flexible. 
     //   so now, we can pass query string parameters or request data to our request objects.
-    {params: {genres: selectedGenre?.id, platforms: selectedPlatform?.id}},
+    {params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id}},
     
     // 8. also added array of dependencies. 
     // so if any of these dependencies changes, 
     // our effect will rerun and refresh the data from the server
-    [selectedGenre?.id, selectedPlatform?.id],
+    [gameQuery],
   )
 
 export default useGames;

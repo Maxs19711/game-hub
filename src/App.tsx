@@ -26,7 +26,10 @@ function App() {
         <GridItem area="aside" paddingX={5}>
           {/*2. Here, we get notified and set the selected genre, 
           this causes the app component to rerender*/}
-          <GenreList onSelectGenre={(genre) => setSelectedGenres(genre)} />
+          <GenreList
+            selectedGenre={selectedGenre}
+            onSelectGenre={(genre) => setSelectedGenres(genre)}
+          />
         </GridItem>
       </Show>
       <GridItem area="main">

@@ -22,7 +22,13 @@ const useGames = (gameQuery: GameQuery) =>
     //6. game hook passes the selected genre as a query string parameter to the data hook
     //7. we had to open up our data hook and make it more flexible. 
     //   so now, we can pass query string parameters or request data to our request objects.
-    {params: {genres: gameQuery.genre?.id, platforms: gameQuery.platform?.id}},
+    {
+      params: {
+        genres: gameQuery.genre?.id, 
+        platforms: gameQuery.platform?.id,
+        ordering: gameQuery.sortOrder
+      }
+    },
     
     // 8. also added array of dependencies. 
     // so if any of these dependencies changes, 
